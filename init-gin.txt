@@ -1,0 +1,31 @@
+
+	Gin 框架的搭建与用法
+
+	一、环境搭建
+
+		1) 安装Gin框架：
+		
+			go get github.com/gin-gonic/gin
+
+		2) 安装Mysql驱动：
+
+			go get github.com/go-sql-driver/mysql
+
+		完成基本环境搭建。
+
+	二、Hello World
+
+		package main
+
+		import (
+    			"net/http"
+    			"github.com/gin-gonic/gin"
+		)
+
+		func main() {
+    			router := gin.Default()
+    			router.GET("/", func(c *gin.Context) {
+        		c.String(http.StatusOK, "hello world")
+    			})
+		}
+	

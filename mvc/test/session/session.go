@@ -24,5 +24,20 @@ func main() {
 		session.Save()
 		c.JSON(200, gin.H{"count": count})
 	})
+
+	r.GET("/set/:name", func( c *gin.Context ){
+		session := sessions.Default(c)
+		session.Set( "name", c.Param("name") )
+		session.Save()
+		c.JSON(200, gin.H{"name": "success" })
+	})
+
+	r.GET("/get", func( c *gin.Context ){
+		session := sessions.Default(c)
+		name := session.Get("name")
+		c.JSON(200, gin.H{"name": name })
+	})
+
+
 	r.Run(":8000")
 }

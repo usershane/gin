@@ -5,8 +5,15 @@ package main
 import(
 	"fmt"
 	"github.com/gin-gonic/gin"
+	//	"github.com/gin-gonic/gin/binding"
 	"net/http"
 )
+
+//实现表单数据绑定
+type LoginForm struct {
+    User     string `form:"user"     binding:"required"`
+    Password string `form:"password" binding:"required"`
+}
 
 //中间件
 func Middleware(c *gin.Context) {
@@ -68,7 +75,7 @@ func main() {
 	r.StaticFile("/image", "./static/image/image01.jpg")
 
 	// 使用模板
-	r.LoadHTMLGlob("static/html/*")
+	r.LoadHTMLGlob("mvc/view/*")
 	r.GET( "/index", func(c *gin.Context){
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
 			"title": "GIN: 测试加载HTML模板",
@@ -78,6 +85,22 @@ func main() {
 	// 下面测试重定向
 	r.GET("/redirect", func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, "www.baidu.com")
+	})
+
+	// 表单数据绑定
+	r.POST("/login", func(c *gin.Context) {
+        // you can bind multipart form with explicit binding declaration:
+        // c.BindWith(&form, binding.Form)
+        // or you can simply use autobinding with Bind method:
+		var form LoginForm
+		// in this case proper binding will be automatically selected
+		if c.Bind(&form) == nil {
+			if form.User == "user" && form.Password == "password" {
+				c.JSON(200, gin.H{"status": "you are logged in"})
+			} else {
+				c.JSON(401, gin.H{"status": "unauthorized"})
+			}
+		}
 	})
 
 	r.Run()

@@ -13,6 +13,10 @@
 
 			go get github.com/go-sql-driver/mysql
 
+		3) 安装Gin框架的表单的数据绑定
+
+			go get github.com/gin-gonic/gin/binding
+
 		完成基本环境搭建。
 
 	二、文件结构说明
@@ -50,4 +54,12 @@
         			c.String(http.StatusOK, "hello world")
     			})
 		}
-	
+
+	四：MYSQL部分
+
+		1) 备份指定的数据库
+
+			mysqldump --user=root --password --lock-tables \
+			 --verbose --databases test_orm > test_orm.sql
+
+		2）

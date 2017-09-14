@@ -17,6 +17,10 @@
 
 			go get github.com/gin-gonic/gin/binding
 
+		4) 安装session组建
+			
+			go get github.com/gin-gonic/contrib/sessions
+
 		完成基本环境搭建。
 
 	二、文件结构说明
@@ -63,3 +67,7 @@
 			 --verbose --databases test_orm > test_orm.sql
 
 		2）
+
+	五：开发测试( curl的使用 )
+
+		1) curl -v --form user=user --form password=password http://localhost:8080/login

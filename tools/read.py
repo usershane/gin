@@ -70,15 +70,7 @@ def FileRead( strFileName, nid ):
     fo.close()
 
 def main():
-    FileRead( './缤纷年代',   104 )
-    FileRead( './皇冠国际',   109 )
-    FileRead( './皇家公馆',   110 )
-    FileRead( './皇家米克斯', 126 )
-    FileRead( './金城明珠',   112 )
-    FileRead( './金世茂',     115 )
-    FileRead( './昆山之夜',   118 )
-    FileRead( './英皇国际',   124 )
-    FileRead( './至尊公馆',   122 )
+    FileRead( './',   122 )
 
 if __name__=="__main__":
     main()
